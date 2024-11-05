@@ -1,0 +1,25 @@
+userById:
+  get:
+    tags:
+      - user
+    description: Get user with ID
+    operationId: getUserById
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    responses:
+      "200":
+        $ref: "../components/responses.yml#/GetUserResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Not Found
+      "422":
+        description: Validation Exception

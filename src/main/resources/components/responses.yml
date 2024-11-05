@@ -1,0 +1,43 @@
+NotFoundResponse:
+  description: Task not found
+  content:
+    application/json:
+      schema:
+        $ref: './schemas.yml#/NotFoundResponseDTO'
+
+MessageResponse:
+  description: Successful Operation
+  content:
+    application/json:
+      schema:
+        $ref: './schemas.yml#/MessageResponseDTO'
+
+TokenResponse:
+  description: Successful Operation
+  content:
+    application/json:
+      schema:
+        $ref: './schemas.yml#/TokenResponseDTO'
+
+GetUserResponse:
+  description: Successful Operation
+  content:
+    application/json:
+      schema:
+        $ref: './schemas.yml#/UserResponseDTO'
+
+GetRentalResponse:
+  description: Successful Operation
+  content:
+    application/json:
+      schema:
+        $ref: './schemas.yml#/RentalResponseDTO'
+
+GetAllRentalResponse:
+  description: Successful Operation
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: './schemas.yml#/RentalResponseDTO'

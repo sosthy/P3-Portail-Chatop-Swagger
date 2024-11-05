@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    This is a sample ChaTop Server based on the OpenAPI 3.0 specification. 
+  version: 1.0.0
+
+servers:
+  - url: /api/v1
+    description: Serveur dynamique
+    variables:
+      environment:
+        default: production
+        enum:
+          - production
+          - staging
+          - development
+      basePath:
+        default: api/v1  # Base path par défaut
+        description: Chemin de base de l'API
+
+tags:
+  - name: auth
+    description: Everything about authentication
+  - name: rental
+  - name: message
+  - name: user
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      description: Create a new user in the store
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRegisterDTO"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/TokenResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+  /auth/login:
+    post:
+      tags:
+        - auth
+      description: Generate a jwt token
+      operationId: authenticateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLoginDTO"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/TokenResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+  /auth/me:
+    get:
+      tags:
+        - auth
+      description: Return informations about me
+      operationId: whoIam
+      responses:
+        "200":
+          $ref: "#/components/responses/GetUserResponse"
+        "400":
+          description: Bad Request
+        "401":
+            description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+
+  /rentals:
+    get:
+      tags:
+        - rental
+      description: Get all rentals
+      operationId: getAllRentals
+      responses:
+        "200":
+          $ref: '#/components/responses/GetAllRentalResponse'
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+    post:
+      tags:
+        - rental
+      description: Create a new rental
+      operationId: createRental
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RentalDTO"
+      responses:
+        "200":
+          $ref: "#/components/responses/MessageResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Non Trouvée
+        "422":
+          description: Validation Exception
+
+  /rentals/{rentalId}:
+    get:
+      tags:
+        - rental
+      description: Get rental with ID
+      operationId: getRentalById
+      parameters:
+        - name: rentalId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          $ref: "#/components/responses/GetRentalResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+    put:
+      tags:
+        - rental
+      description: Update rental by ID
+      operationId: updateRentalById
+      parameters:
+        - name: rentalId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/RentalDTO"
+      responses:
+        "200":
+          $ref: "#/components/responses/MessageResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+
+  /messages:
+    post:
+      tags:
+        - message
+      description: Créer un message
+      operationId: createMessage
+      requestBody:
+        description: Create a new message
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageDTO"
+      responses:
+        "200":
+          $ref: "#/components/responses/MessageResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+
+  /user/{userId}:
+    get:
+      tags:
+        - user
+      description: Get user with ID
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          $ref: "#/components/responses/GetUserResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Access Denied
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+          description: Not Found
+        "422":
+          description: Validation Exception
+
+components:
+  schemas:
+    UserDTO:
+      $ref: './components/schemas.yml#/UserDTO'
+    UserResponseDTO:
+      $ref: './components/schemas.yml#/UserResponseDTO'
+    UserLoginDTO:
+      $ref: './components/schemas.yml#/UserLoginDTO'
+    UserRegisterDTO:
+      $ref: './components/schemas.yml#/UserRegisterDTO'
+    RentalDTO:
+      $ref: './components/schemas.yml#/RentalDTO'
+    RentalResponseDTO:
+      $ref: './components/schemas.yml#/RentalResponseDTO'
+    MessageDTO:
+      $ref: './components/schemas.yml#/MessageDTO'
+    MessageResponseDTO:
+      $ref: './components/schemas.yml#/MessageResponseDTO'
+    NotFoundResponseDTO:
+      $ref: './components/schemas.yml#/NotFoundResponseDTO'
+  responses:
+    NotFoundResponse:
+      $ref: './components/responses.yml#/NotFoundResponse'
+    MessageResponse:
+      $ref: './components/responses.yml#/MessageResponse'
+    TokenResponse:
+      $ref: './components/responses.yml#/TokenResponse'
+    GetUserResponse:
+      $ref: './components/responses.yml#/GetUserResponse'
+    GetRentalResponse:
+      $ref: './components/responses.yml#/GetRentalResponse'
+    GetAllRentalResponse:
+      $ref: './components/responses.yml#/GetAllRentalResponse'
+    

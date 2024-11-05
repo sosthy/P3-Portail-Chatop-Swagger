@@ -1,0 +1,176 @@
+UserDTO:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      exemple: 1
+    name:
+      type: string
+      example: Test TEST
+    email:
+      type: string
+      example: test@test.com
+    password:
+      type: string
+      example: test!31
+    created_at:
+      type: string
+      example: 2022/02/02
+    updated_at:
+      type: string
+      example: 2022/08/02
+
+UserResponseDTO:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      exemple: 1
+    name:
+      type: string
+      example: Test TEST
+    email:
+      type: string
+      example: test@test.com
+    password:
+      type: string
+      example: test!31
+    created_at:
+      type: string
+      example: 2022/02/02
+    updated_at:
+      type: string
+      example: 2022/08/02
+
+UserLoginDTO:
+  type: object
+  properties:
+    login:
+      type: string
+      example: test@test.com
+    password:
+      type: string
+      example: test!31
+  required:
+    - email
+    - password
+
+UserRegisterDTO:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Test TEST
+    email:
+      type: string
+      example: test@test.com
+    password:
+      type: string
+      example: test!31
+  required:
+    - email
+    - password
+
+RentalDTO:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Test TEST
+    surface:
+      type: integer
+      example: 432
+    price:
+      type: integer
+      example: 300
+    picture:
+      type: array
+      items:
+        type: string
+        format: binary
+    description:
+      type: string
+      example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat."
+    owner_id:
+      type: integer
+      example: 1
+    created_at:
+      type: string
+      example: 2012/12/02
+    updated_at:
+      type: string
+      example: 2014/12/02
+
+RentalResponseDTO:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Test TEST
+    surface:
+      type: integer
+      example: 432
+    price:
+      type: integer
+      example: 300
+    picture:
+      type: array
+      items:
+        type: string
+        format: binary
+    description:
+      type: string
+      example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat."
+    owner_id:
+      type: integer
+      example: 1
+    created_at:
+      type: string
+      example: 2012/12/02
+    updated_at:
+      type: string
+      example: 2014/12/02
+
+MessageDTO:
+  type: object
+  properties:
+    user_id:
+      type: integer
+      format: int64
+      example: 1
+    rental_id:
+      type: integer
+      format: int64
+      example: 1
+    message:
+      type: string
+      example: "mon message"
+
+MessageResponseDTO:
+  type: object
+  properties:
+    message:
+      type: string
+      example: "Message response !"
+
+TokenResponseDTO:
+  type: object
+  properties:
+    message:
+      type: string
+      example: "token"
+
+NotFoundResponseDTO:
+  type: object
+  properties:
+    message:
+      type: string
+      example: "Task not found"

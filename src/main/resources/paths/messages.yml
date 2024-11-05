@@ -1,0 +1,24 @@
+messages:
+  post:
+    tags:
+      - message
+    description: Créer un message
+    operationId: createMessage
+    requestBody:
+      description: Create a new message
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yml#/MessageDTO"
+    responses:
+      "200":
+        $ref: "../components/responses.yml#/MessageResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Not Found
+      "422":
+        description: Validation Exception

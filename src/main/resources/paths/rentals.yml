@@ -1,0 +1,103 @@
+rentals:
+  get:
+    tags:
+      - rental
+    description: Get all rentals
+    operationId: getAllRentals
+    responses:
+      "200":
+        description: Successful Operation
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../components/responses.yml#/GetRentalResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Not Found
+      "422":
+        description: Validation Exception
+
+  post:
+    tags:
+      - rental
+    description: Create a new rental
+    operationId: createRental
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "../components/schemas.yml#/RentalDTO"
+    responses:
+      "200":
+        $ref: "../components/responses.yml#/MessageResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Non Trouvée
+      "422":
+        description: Validation Exception
+
+rentalById:
+  get:
+    tags:
+      - rental
+    description: Get rental with ID
+    operationId: getRentalById
+    parameters:
+      - name: rentalId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    responses:
+      "200":
+        $ref: "../components/responses.yml#/GetRentalResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Not Found
+      "422":
+        description: Validation Exception
+
+  put:
+    tags:
+      - rental
+    description: Update rental by ID
+    operationId: updateRentalById
+    parameters:
+      - name: rentalId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: "../components/schemas.yml#/RentalDTO"
+    responses:
+      "200":
+        $ref: "../components/responses.yml#/MessageResponse"
+      "400":
+        description: Bad Request
+      "401":
+        description: Access Denied
+      "404":
+        $ref: "../components/responses.yml#/NotFoundResponse"
+        description: Not Found
+      "422":
+        description: Validation Exception
