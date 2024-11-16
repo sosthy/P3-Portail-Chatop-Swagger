@@ -76,19 +76,18 @@ UserRegisterDTO:
 RentalDTO:
   type: object
   properties:
-    id:
-      type: integer
-      format: int64
     name:
       type: string
       example: Test TEST
     surface:
-      type: integer
-      example: 432
+      type: number
+      format: double
+      example: 432.0
     price:
-      type: integer
-      example: 300
-    picture:
+      type: number
+      format: double
+      example: 300.25
+    pictures:
       type: array
       items:
         type: string
@@ -96,15 +95,6 @@ RentalDTO:
     description:
       type: string
       example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat."
-    owner_id:
-      type: integer
-      example: 1
-    created_at:
-      type: string
-      example: 2012/12/02
-    updated_at:
-      type: string
-      example: 2014/12/02
 
 RentalResponseDTO:
   type: object
@@ -116,21 +106,23 @@ RentalResponseDTO:
       type: string
       example: Test TEST
     surface:
-      type: integer
+      type: number
+      format: double
       example: 432
     price:
-      type: integer
+      type: number
+      format: double
       example: 300
     picture:
       type: array
       items:
         type: string
-        format: binary
     description:
       type: string
       example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat."
     owner_id:
       type: integer
+      format: int64
       example: 1
     created_at:
       type: string
@@ -164,7 +156,7 @@ MessageResponseDTO:
 TokenResponseDTO:
   type: object
   properties:
-    message:
+    token:
       type: string
       example: "token"
 
