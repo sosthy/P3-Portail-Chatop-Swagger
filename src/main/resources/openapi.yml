@@ -95,6 +95,8 @@ paths:
 
   /rentals:
     get:
+      security:
+        - bearerAuth: [ ]
       tags:
         - rental
       description: Get all rentals
@@ -179,7 +181,7 @@ paths:
             format: int64
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          multipart/form-data:
             schema:
               $ref: "#/components/schemas/RentalDTO"
       responses:
@@ -208,7 +210,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/MessageDTO"
+              $ref: "#/components/schemas/MessageBodyDTO"
       responses:
         "200":
           $ref: "#/components/responses/MessageResponse"
@@ -228,6 +230,8 @@ paths:
         - user
       description: Get user with ID
       operationId: getUserById
+      security:
+        - bearerAuth: []
       parameters:
         - name: userId
           in: path
@@ -262,8 +266,8 @@ components:
       $ref: './components/schemas.yml#/RentalDTO'
     RentalResponseDTO:
       $ref: './components/schemas.yml#/RentalResponseDTO'
-    MessageDTO:
-      $ref: './components/schemas.yml#/MessageDTO'
+    MessageBodyDTO:
+      $ref: './components/schemas.yml#/MessageBodyDTO'
     MessageResponseDTO:
       $ref: './components/schemas.yml#/MessageResponseDTO'
     NotFoundResponseDTO:
@@ -286,4 +290,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    

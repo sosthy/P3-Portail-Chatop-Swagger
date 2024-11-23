@@ -16,9 +16,11 @@ UserDTO:
       example: test!31
     created_at:
       type: string
+      format: date-time
       example: 2022/02/02
     updated_at:
       type: string
+      format: date-time
       example: 2022/08/02
 
 UserResponseDTO:
@@ -39,15 +41,17 @@ UserResponseDTO:
       example: test!31
     created_at:
       type: string
+      format: date-time
       example: 2022/02/02
     updated_at:
       type: string
+      format: date-time
       example: 2022/08/02
 
 UserLoginDTO:
   type: object
   properties:
-    login:
+    email:
       type: string
       example: test@test.com
     password:
@@ -87,7 +91,7 @@ RentalDTO:
       type: number
       format: double
       example: 300.25
-    pictures:
+    picture:
       type: array
       items:
         type: string
@@ -126,14 +130,19 @@ RentalResponseDTO:
       example: 1
     created_at:
       type: string
+      format: date-time
       example: 2012/12/02
     updated_at:
       type: string
+      format: date-time
       example: 2014/12/02
 
-MessageDTO:
+MessageBodyDTO:
   type: object
   properties:
+    id:
+      type: integer
+      format: int64
     user_id:
       type: integer
       format: int64
@@ -145,6 +154,14 @@ MessageDTO:
     message:
       type: string
       example: "mon message"
+    created_at:
+      type: string
+      format: date-time
+      example: 2012/12/02
+    updated_at:
+      type: string
+      format: date-time
+      example: 2014/12/02
 
 MessageResponseDTO:
   type: object

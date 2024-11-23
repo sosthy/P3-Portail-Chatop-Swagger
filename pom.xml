@@ -106,6 +106,12 @@
 								<dateLibrary>java8</dateLibrary>
 								<useTags>true</useTags>
 							</configOptions>
+							<typeMappings>
+								<typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+							</typeMappings>
+							<importMappings>
+								<importMapping>OffsetDateTime=java.time.LocalDateTime</importMapping>
+							</importMappings>
 						</configuration>
 					</execution>
 				</executions>
